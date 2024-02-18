@@ -1,5 +1,6 @@
 package database.management.system.databasemanagementsystem.controller;
 
+import database.management.system.databasemanagementsystem.exception.RepeatedIdErrorResponse;
 import database.management.system.databasemanagementsystem.model.Doctor;
 import database.management.system.databasemanagementsystem.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class Controller {
     }
 
     @PostMapping("/add")
-    public Doctor addDoctor(@RequestBody Doctor newDoctor) {
+    public Doctor addDoctor(@RequestBody Doctor newDoctor) throws RepeatedIdErrorResponse {
         return service.addDoctor(newDoctor);
     }
 

@@ -1,5 +1,6 @@
 package database.management.system.databasemanagementsystem.service.impl;
 
+import database.management.system.databasemanagementsystem.exception.RepeatedIdErrorResponse;
 import database.management.system.databasemanagementsystem.model.Doctor;
 import database.management.system.databasemanagementsystem.repository.DoctorRepository;
 import database.management.system.databasemanagementsystem.service.ServiceRep;
@@ -26,8 +27,12 @@ public class ServiceImpl implements ServiceRep {
     }
 
     @Override
-    public Doctor addDoctor(Doctor doctor) {
-        return doctorRepository.save(doctor);
+    public Doctor addDoctor(Doctor doctor) throws RepeatedIdErrorResponse {
+        if (doctorRepository.existsById(doctor.getId())) {
+            throw new RepeatedIdErrorResponse();
+        } else {
+            return doctorRepository.save(doctor);
+        }
     }
 
     @Override
