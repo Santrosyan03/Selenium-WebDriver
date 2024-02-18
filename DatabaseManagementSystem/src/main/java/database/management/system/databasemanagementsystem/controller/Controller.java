@@ -10,21 +10,30 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/doctors")
 public class Controller {
-
-    private final ServiceImpl doctorService;
+    private final ServiceImpl service;
 
     @Autowired
-    public Controller(ServiceImpl doctorService) {
-        this.doctorService = doctorService;
+    public Controller(ServiceImpl service) {
+        this.service = service;
     }
 
-    @GetMapping ("/getDoctor")
-    public List<Doctor> getAllDoctors() {
-        return doctorService.getAllDoctors();
-    }
-
-    @PostMapping("/addDoctor")
+    @PostMapping("/add")
     public Doctor addDoctor(@RequestBody Doctor newDoctor) {
-        return doctorService.addDoctor(newDoctor);
+        return service.addDoctor(newDoctor);
+    }
+
+    @GetMapping("/all")
+    public List<Doctor> getAllDoctors() {
+        return service.getAllDoctors();
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public Doctor deleteDoctorByID(@PathVariable Integer id) {
+        return service.deleteDoctorByID(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public Doctor updateDoctor(@PathVariable Integer id, @RequestBody Doctor updatedDoctor) {
+        return service.updateDoctorByID(id, updatedDoctor);
     }
 }
