@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.time.LocalDateTime;
 
 @RestControllerAdvice
-public class RepeatedIdErrorResponse extends Throwable {
+public class NotExistingID extends Throwable {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException() {
         ErrorResponse errorResponse = new ErrorResponse(
-                HttpStatus.NOT_ACCEPTABLE.value(),
-                "Not Acceptable",
-                "Doctor with such ID already exists!!!",
+                HttpStatus.NOT_FOUND.value(),
+                "Not Found",
+                "Doctor with such ID do not exist!!!",
                 LocalDateTime.now()
         );
-        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_ACCEPTABLE);
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 }

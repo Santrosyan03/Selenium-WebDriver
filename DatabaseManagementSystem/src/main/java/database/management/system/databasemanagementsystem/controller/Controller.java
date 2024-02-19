@@ -1,5 +1,6 @@
 package database.management.system.databasemanagementsystem.controller;
 
+import database.management.system.databasemanagementsystem.exception.NotExistingID;
 import database.management.system.databasemanagementsystem.exception.RepeatedIdErrorResponse;
 import database.management.system.databasemanagementsystem.model.Doctor;
 import database.management.system.databasemanagementsystem.service.impl.ServiceImpl;
@@ -29,12 +30,12 @@ public class Controller {
     }
 
     @DeleteMapping("/delete/{id}")
-    public Doctor deleteDoctorByID(@PathVariable Integer id) {
+    public Doctor deleteDoctorByID(@PathVariable Integer id) throws NotExistingID {
         return service.deleteDoctorByID(id);
     }
 
     @PutMapping("/update/{id}")
-    public Doctor updateDoctor(@PathVariable Integer id, @RequestBody Doctor updatedDoctor) {
+    public Doctor updateDoctor(@PathVariable Integer id, @RequestBody Doctor updatedDoctor) throws NotExistingID {
         return service.updateDoctorByID(id, updatedDoctor);
     }
 }
