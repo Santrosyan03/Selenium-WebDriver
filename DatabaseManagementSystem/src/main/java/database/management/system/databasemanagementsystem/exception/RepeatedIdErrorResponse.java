@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.time.LocalDateTime;
 
 @RestControllerAdvice
-public class RepeatedIdErrorResponse extends Throwable {
-    @ExceptionHandler(Exception.class)
+public class RepeatedIdErrorResponse extends RuntimeException {
+    @ExceptionHandler(RepeatedIdErrorResponse.class)
     public ResponseEntity<ErrorResponse> handleException() {
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.NOT_ACCEPTABLE.value(),

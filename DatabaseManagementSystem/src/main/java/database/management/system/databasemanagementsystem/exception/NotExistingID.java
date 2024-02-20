@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.time.LocalDateTime;
 
 @RestControllerAdvice
-public class NotExistingID extends Throwable {
-    @ExceptionHandler(Exception.class)
+public class NotExistingID extends RuntimeException {
+    @ExceptionHandler(NotExistingID.class)
     public ResponseEntity<ErrorResponse> handleException() {
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.NOT_FOUND.value(),
