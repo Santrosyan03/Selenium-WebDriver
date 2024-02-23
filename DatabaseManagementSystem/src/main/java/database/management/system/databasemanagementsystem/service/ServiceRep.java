@@ -11,4 +11,5 @@ public interface ServiceRep {
     Doctor addDoctor(Doctor doctor) throws RepeatedIdErrorResponse;
     Doctor deleteDoctorByID(Integer id) throws NotExistingID;
     Doctor updateDoctorByID(Integer id, Doctor doctor) throws NotExistingID;
+    Doctor getDoctorByID(Integer id) throws NotExistingID;
 }

@@ -4,6 +4,7 @@ import database.management.system.databasemanagementsystem.exception.NotExisting
 import database.management.system.databasemanagementsystem.exception.RepeatedIdErrorResponse;
 import database.management.system.databasemanagementsystem.model.Doctor;
 import database.management.system.databasemanagementsystem.service.impl.ServiceImpl;
+import jakarta.ws.rs.Path;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,5 +38,10 @@ public class Controller {
     @PutMapping("/update/{id}")
     public Doctor updateDoctor(@PathVariable Integer id, @RequestBody Doctor updatedDoctor) throws NotExistingID {
         return service.updateDoctorByID(id, updatedDoctor);
+    }
+
+    @GetMapping("/get/{id}")
+    public Doctor getDoctorByID(@PathVariable Integer id) {
+        return service.getDoctorByID(id);
     }
 }
