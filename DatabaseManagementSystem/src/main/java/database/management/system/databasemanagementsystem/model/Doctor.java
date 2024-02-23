@@ -17,6 +17,9 @@ public class Doctor {
     @Column(name = "id")
     private Integer id;
 
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "nation")
     private String nation;
 
