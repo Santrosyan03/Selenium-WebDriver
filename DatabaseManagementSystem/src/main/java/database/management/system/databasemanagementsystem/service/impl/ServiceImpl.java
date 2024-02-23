@@ -71,11 +71,10 @@ public class ServiceImpl implements ServiceRep {
     public Doctor getDoctorByID(Integer id) throws NotExistingID {
         Doctor doctorToBeReturned = doctorRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + id));
-        if (doctorRepository.existsById(doctorToBeReturned.getId())) {
-            doctorRepository.getById(id);
-            return doctorToBeReturned;
-        } else {
+        if (!doctorRepository.existsById(doctorToBeReturned.getId())) {
             throw new NotExistingID();
         }
+        doctorRepository.getReferenceById(id);
+        return doctorToBeReturned;
     }
 }

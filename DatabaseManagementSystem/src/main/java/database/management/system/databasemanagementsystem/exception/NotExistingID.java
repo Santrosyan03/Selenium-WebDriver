@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @RestControllerAdvice
 public class NotExistingID extends RuntimeException {
-    @ExceptionHandler(NotExistingID.class)
+    @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException() {
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.NOT_FOUND.value(),
